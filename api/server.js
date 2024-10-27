@@ -41,6 +41,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/matches", matchRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/company",companyRoutes);
 app.use("/api/friends", friendRoutes);
 
 if (process.env.NODE_ENV === "production") {
