@@ -5,20 +5,9 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const maleNames = ["Steakhouse", "Grill Master", "Meat Haven", "Carnivore's Delight", "Prime Cuts", "BBQ Bliss", "Rib Rack", "Beef Bistro", "Chophouse", "Meat Feast"];
+const maleNames=["Steakhouse","GrillMaster","MeatHaven","Carnivore'sDelight","PrimeCuts","BBQBliss","RibRack","BeefBistro","Chophouse","MeatFeast"];
 
-const femaleNames = [
-"Green Garden",
-"Veggie Delight",
-"Herbivore Haven",
-"Plant Power",
-"Veggie Bistro",
-"Leafy Greens",
-"Roots & Shoots",
-"Garden Fresh",
-"Veggie Feast",
-"Plant-Based Paradise"
-];
+const femaleNames=["GreenGarden","VeggieDelight","HerbivoreHaven","PlantPower","VeggieBistro","LeafyGreens","Roots&Shoots","GardenFresh","VeggieFeast","Plant-BasedParadise"];
 
 const genderPreferences = ["male", "female", "both"];
 

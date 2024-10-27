@@ -41,7 +41,7 @@ const ProfilePage = () => {
 
 			<div className='flex-grow flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8'>
 				<div className='sm:mx-auto sm:w-full sm:max-w-md'>
-					<h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>Your Profile</h2>
+					<h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>Configuração Pública</h2>
 				</div>
 
 				<div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
@@ -87,7 +87,7 @@ const ProfilePage = () => {
 
 							{/* GENDER */}
 							<div>
-								<span className='block text-sm font-medium text-gray-700 mb-2'>Gender</span>
+								<span className='block text-sm font-medium text-gray-700 mb-2'>Genero</span>
 								<div className='flex space-x-4'>
 									{["Male", "Female"].map((option) => (
 										<label key={option} className='inline-flex items-center'>
@@ -105,11 +105,10 @@ const ProfilePage = () => {
 								</div>
 							</div>
 
-							{/* GENDER PREFERENCE */}
 							<div>
-								<span className='block text-sm font-medium text-gray-700 mb-2'>Gender Preference</span>
+								<span className='block text-sm font-medium text-gray-700 mb-2'>Preferências</span>
 								<div className='flex space-x-4'>
-									{["Male", "Female", "Both"].map((option) => (
+									{["Onivoro", "Vegeraiano", "Vegano"].map((option) => (
 										<label key={option} className='inline-flex items-center'>
 											<input
 												type='checkbox'
