@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { Link } from "react-router-dom";
-import { UtensilsCrossed, User, LogOut, Menu } from "lucide-react";
+import { UtensilsCrossed, User, LogOut, Menu, Settings } from "lucide-react";
 
 export const Header = () => {
 	const { authUser, logout } = useAuthStore();
@@ -56,6 +56,16 @@ export const Header = () => {
 											<User className='mr-2' size={16} />
 											Perfil
 										</Link>
+
+										<Link
+											to='/configuracoes'
+											className='px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center'
+											onClick={() => setDropdownOpen(false)}
+										>
+											<Settings className='mr-2' size={16} />
+											Configuracoes
+										</Link>
+
 										<button
 											onClick={logout}
 											className='w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center'
@@ -110,6 +120,15 @@ export const Header = () => {
 								>
 									Perfil
 								</Link>
+
+								<Link
+									to='/configuracoes'
+									className='block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#a73737]-700'
+									onClick={() => setMobileMenuOpen(false)}
+								>
+									Configurações
+								</Link>
+
 								<button
 									onClick={() => {
 										logout();
