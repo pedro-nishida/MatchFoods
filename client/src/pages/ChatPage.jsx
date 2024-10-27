@@ -106,7 +106,7 @@ const LoadingMessagesUI = () => (
 					className='w-3 h-3 bg-[#bf1919] rounded-full animate-bounce'
 					style={{ animationDelay: "0.4s" }}
 				></div>
-			</div>
+			</div> 
 		</div>
 	</div>
 );
