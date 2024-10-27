@@ -14,7 +14,10 @@ import MessageInput from "./components/MessageInput";
 import { Sidebar } from "lucide-react";
 import SignUpForm from "./components/SignUpForm";
 import SwipeArea from "./components/SwipeArea";
+import FriendsPage from "./pages/FriendsPage";
+import FriendProfilePage from "./pages/FriendProfilePage";
 import UserSettings from "./components/UserSettings";
+
 
 function App() {
 	const { checkAuth, authUser, checkingAuth } = useAuthStore();
@@ -40,7 +43,11 @@ function App() {
 				<Route path='/' element={authUser ? <HomePage /> : <Navigate to={"/auth"} />} />
 				<Route path='/auth' element={!authUser ? <AuthPage /> : <Navigate to={"/"} />} />
 				<Route path='/profile' element={authUser ? <ProfilePage /> : <Navigate to={"/auth"} />} />
+				{/* <Route path='/profile' element={<ProfilePage />} /> */}
 				<Route path='/chat/:id' element={authUser ? <ChatPage /> : <Navigate to={"/auth"} />} />
+				<Route path='/friends' element={authUser ? <FriendsPage /> : <Navigate to={"/auth"} />} />
+				{/*<Route path='/friends' element={<FriendsPage />} /> */}
+				<Route path="/friend/:friendId" element={<FriendProfilePage />} />
 				<Route path='/configuracoes' element={authUser ? <ConfigPage /> : <Navigate to={"/auth"} />} />
 				<Route path='/userSettings' element={authUser ? <UserSettings /> : <Navigate to={"/auth"} />} />
 			</Routes>
@@ -51,3 +58,4 @@ function App() {
 }
 
 export default App;
+
