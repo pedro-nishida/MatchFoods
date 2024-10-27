@@ -1,0 +1,3 @@
+[submodule "MatchFoods"]
+	path = MatchFoods
+	url = https://github.com/pedro-nishida/MatchFoods.git
