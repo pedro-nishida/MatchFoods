@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import Company from "../models/Company.js"
 import jwt from "jsonwebtoken";
 
 const signToken = (id) => {
@@ -59,6 +60,99 @@ export const signup = async (req, res) => {
 		res.status(500).json({ success: false, message: "Server error" });
 	}
 };
+
+export const companysignup = async (req, res) => {
+	const { name, email, password, bio, cnpj, category, locate } = req.body;
+	try {
+		if (!name || !email || !password || !bio || !cnpj || !category || !locate) {
+			return res.status(400).json({
+				success: false,
+				message: "All fields are required",
+			});
+		}
+
+		// if (age < 18) {
+		// 	return res.status(400).json({
+		// 		success: false,
+		// 		message: "You must at lest 18 years old",
+		// 	});
+		// }
+
+		if (password.length < 6) {
+			return res.status(400).json({
+				success: false,
+				message: "Password must be at least 6 characters",
+			});
+		}
+
+		const newCompany = await Company.create({
+			name,
+			email,
+			password,
+			bio,
+			cnpj,
+			category,
+			locate
+		});
+		
+		const token = signToken(newCompany._id);
+
+		res.cookie("jwt", token, {
+			maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds
+			httpOnly: true, // prevents XSS attacks
+			sameSite: "strict", // prevents CSRF attacks
+			secure: process.env.NODE_ENV === "production",
+		});
+
+		res.status(201).json({
+			success: true,
+			user: newCompany,
+		});
+	} catch (error) {
+		console.log("Error in signup controller:", error);
+		res.status(500).json({ success: false, message: "Server error" });
+	}
+};
+
+export const companylogin = async (req, res) => {
+	const { email, password } = req.body;
+	try {
+		if (!email || !password) {
+			return res.status(400).json({
+				success: false,
+				message: "All fields are required",
+			});
+		}
+
+		const company = await Company.findOne({ email }).select("+password");
+
+		if (!company || !(await company.matchPassword(password))) {
+			return res.status(401).json({
+				success: false,
+				message: "Invalid email or password",
+			});
+		}
+
+		const token = signToken(company._id);
+
+		res.cookie("jwt", token, {
+			maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds
+			httpOnly: true, // prevents XSS attacks
+			sameSite: "strict", // prevents CSRF attacks
+			secure: process.env.NODE_ENV === "production",
+		});
+
+		res.status(200).json({
+			success: true,
+			company,
+		});
+	} catch (error) {
+		console.log("Error in login controller:", error);
+		res.status(500).json({ success: false, message: "Server error" });
+	}
+};
+
+
 export const login = async (req, res) => {
 	const { email, password } = req.body;
 	try {
