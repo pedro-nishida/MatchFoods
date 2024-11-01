@@ -10,7 +10,8 @@ import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import matchRoutes from "./routes/matchRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
-import friendRoutes from "./routes/friendRoutes.js"
+import friendRoutes from "./routes/friendRoutes.js";
+import companyRoutes from "./routes/companyRoutes.js"
 
 import { connectDB } from "./config/db.js";
 import { initializeSocket } from "./socket/socket.server.js";

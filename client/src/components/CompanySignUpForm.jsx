@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import InputMask from 'react-input-mask';
 
+
 const SignUpForm = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
@@ -9,16 +10,21 @@ const SignUpForm = () => {
 	const [bio, setBio] = useState("");
 	const [cnpj, setCnpj] = useState("");
 	const [category, setCategory] = useState("");
-  const [locate, setLocate] = useState("");
+   	const [locate, setLocate] = useState("");
 
-	const { signup, loading } = useAuthStore();
+	const { companysignup, loading } = useAuthStore();
+	const handleChange = (e,category) => {
+        const selectedCategory = e.target.value; // Obtendo o valor selecionado
+        setCategory(selectedCategory); // Atualizando o estado
+    };
+
 
 	return (
 		<form
 			className='space-y-6'
 			onSubmit={(e) => {
 				e.preventDefault();
-        signup({ name, email, password, bio, cnpj, category, locate });
+				companysignup({ name, email, password, bio, cnpj, category, locate });
 			}}
 		>
 			{/* NAME */}
@@ -117,10 +123,11 @@ const SignUpForm = () => {
           <label className='block text-sm font-medium text-gray-700'>Tipo de Restaurante</label>
           <div className='mt-2 space-y-2'>
               <select
+			  id="categoryy"
                   name='category'
                   className='block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-[#cc4747] focus:border-[#cc4747]'
-                  onChange={(e) => setCategory(e.target.value)}
-              >
+				  onChange={handleChange} // Chamando a função ao mudar a seleção
+				  >
                   <option value="Brasileira">Brasileira</option>
                   <option value="Italiana">Italiana</option>
                   <option value="Saudável">Saudável</option>
